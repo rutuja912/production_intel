@@ -89,3 +89,45 @@ export default function Machines() {
     </div>
   );
 }
+const styles = {
+  title: { marginBottom: "25px" },
+  card: {
+    background: "white",
+    padding: "25px",
+    borderRadius: "12px",
+    marginBottom: "30px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+  },
+  formRow: {
+    display: "flex",
+    gap: "10px",
+    flexWrap: "wrap",
+  },
+  input: {
+    padding: "8px 12px",
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+  },
+  button: {
+    padding: "8px 16px",
+    backgroundColor: "#2563eb",
+    color: "white",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse",
+  },
+  th: {
+    textAlign: "left",
+    padding: "12px",
+    backgroundColor: "#f3f4f6",
+    fontSize: "14px",
+  },
+  td: {
+    padding: "12px",
+    borderBottom: "1px solid #eee",
+  },
+};
