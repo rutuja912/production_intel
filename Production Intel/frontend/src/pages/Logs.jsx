@@ -117,7 +117,7 @@ export default function Logs() {
           <input
             type="number"
             style={styles.input}
-            placeholder="Actual Hours"
+            placeholder="Actual Working Hours"
             value={newLog.actual_hours}
             onChange={(e) =>
               setNewLog({ ...newLog, actual_hours: e.target.value })
@@ -127,7 +127,7 @@ export default function Logs() {
           <input
             type="number"
             style={styles.input}
-            placeholder="Downtime"
+            placeholder="Machine Downtime"
             value={newLog.downtime}
             onChange={(e) =>
               setNewLog({ ...newLog, downtime: e.target.value })

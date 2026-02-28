@@ -87,7 +87,7 @@ export default function WorkOrders() {
           <input
             style={styles.input}
             type="number"
-            placeholder="Estimated Hours"
+            placeholder="Estimated Work Hours"
             value={newOrder.estimated_hours}
             onChange={(e) =>
               setNewOrder({ ...newOrder, estimated_hours: e.target.value })
@@ -115,6 +115,9 @@ export default function WorkOrders() {
               </option>
             ))}
           </select>
+          <p style={styles.helperText}>
+  If no machine is selected, the system will automatically allocate the best idle machine based on available capacity.
+          </p>
           <button style={styles.button} onClick={addOrder}>
             Add
           </button>
@@ -258,4 +261,9 @@ const styles = {
     fontSize: "12px",
     textAlign: "center",
   },
+  helperText: {
+  fontSize: "12px",
+  color: "#6b7280",
+  marginTop: "6px",
+}
 };
