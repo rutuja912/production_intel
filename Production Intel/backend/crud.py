@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
 import models
+from sqlalchemy import func
+from datetime import date
 
 def get_machines(db: Session):
     return db.query(models.Machine).all()
@@ -41,3 +43,25 @@ def create_work_order(db, order):
 
 def get_machine_logs(db):
     return db.query(models.MachineLog).all()
+
+SHIFT_HOURS = 8
+
+def get_underutilized_machine(db: Session):
+    results = (
+        db.query(
+            models.MachineLog.machine_id,
+            func.sum(models.MachineLog.actual_hours).label("total_work")
+        )
+        .filter(models.MachineLog.log_date == date.today())
+        .group_by(models.MachineLog.machine_id)
+        .all()
+    )
+
+    machine_capacity = {}
+
+    for r in results:
+        remaining = SHIFT_HOURS - (r.total_work or 0)
+        machine_capacity[r.machine_id] = remaining
+
+    # Machine with highest remaining capacity
+    return max(machine_capacity, key=machine_capacity.get)
