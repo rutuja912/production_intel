@@ -33,7 +33,7 @@ export default function WorkOrders() {
   };
 
   const addOrder = async () => {
-    if (!newOrder.client_name || !newOrder.machine_id) return;
+    if (!newOrder.client_name) return;
 
     await fetch(`${API}/work-orders`, {
       method: "POST",
@@ -43,7 +43,9 @@ export default function WorkOrders() {
         product_name: newOrder.product_name,
         estimated_hours: Number(newOrder.estimated_hours) || 0,
         planned_end_date: newOrder.planned_end_date,
-        machine_id: Number(newOrder.machine_id),
+        machine_id: newOrder.machine_id
+        ? Number(newOrder.machine_id)
+        : null,
       }),
     });
 

@@ -284,12 +284,13 @@ def create_work_order(order: schemas.WorkOrderCreate, db: Session = Depends(get_
 
     required_daily = order.estimated_hours / remaining_days
 
-    best_machine = get_best_machine_for_allocation(db, required_daily)
+    if not order.machine_id:
+        best_machine = get_best_machine_for_allocation(db, required_daily)
 
-    if not best_machine:
-        return {"error": "No machine has sufficient remaining capacity today"}
+        if not best_machine:
+            return {"error": "No machine has sufficient remaining capacity today"}
 
-    order.machine_id = best_machine.id
+        order.machine_id = best_machine.id
 
     return crud.create_work_order(db, order)
 
