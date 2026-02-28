@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Optional
 from datetime import date
 
 
@@ -20,7 +20,7 @@ class WorkOrderCreate(BaseModel):
     product_name: str
     estimated_hours: float
     planned_end_date: date
-    machine_id: int
+    machine_id: Optional[int] = None
 
 class MachineLogCreate(BaseModel):
     machine_id: int
@@ -28,13 +28,3 @@ class MachineLogCreate(BaseModel):
     log_date: date
     actual_hours: float
     downtime: float
-
-from pydantic import BaseModel
-from datetime import date
-
-class WorkOrderCreate(BaseModel):
-    client_name: str
-    product_name: str
-    estimated_hours: float
-    planned_end_date: date
-    machine_id: int
