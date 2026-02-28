@@ -341,3 +341,7 @@ def create_work_order(order: schemas.WorkOrderCreate, db: Session = Depends(get_
 @app.get("/machine-logs")
 def read_logs(db: Session = Depends(get_db)):
     return crud.get_machine_logs(db)
+
+@app.post("/machines")
+def create_machine(machine: schemas.MachineCreate, db: Session = Depends(get_db)):
+    return crud.create_machine(db, machine)
